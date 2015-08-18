@@ -8,11 +8,6 @@ class MicroBlogger
     @client = JumpstartAuth.twitter
   end
 
-  def dm(target, message)
-    puts "Trying to send #{target} this direct message:"
-    puts message
-  end
-
   def run
     puts "Welcome to the JSL Twitter Client!"
     command = ""
@@ -36,6 +31,32 @@ class MicroBlogger
       @client.update(message)
     else
       puts "Sorry, this post is larger than 140 characters and will not be posted."
+    end
+  end
+
+  def dm(target, message)
+    screen_names = @client.followers.collect { |follower| @client.user(follower).screen_name }
+    if screen_names.include?(target)
+      puts "Trying to send #{target} this direct message:"
+      puts message
+      message = "d @#{target} #{message}"
+      tweet(message)
+    else
+      puts "You can only DM people who follow you!"
+    end
+  end
+
+  def followers_list
+    screen_names = []
+    @client.followers.each do |follower|
+      screen_names << @client.user(follower).screen_name
+    end
+    return screen_names
+  end
+
+  def spam_my_followers(message)
+    followers_list.each do |target|
+      dm(target, message)
     end
   end
 
