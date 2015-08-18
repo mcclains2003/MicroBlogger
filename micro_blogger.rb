@@ -4,7 +4,8 @@ class MicroBlogger
   attr_reader :client
 
   def initialize
-    puts "Initializing MicroBlogger"
+    puts "Initializing MicroBlogger..."
+    @client = JumpstartAuth.twitter
   end
 
 end
