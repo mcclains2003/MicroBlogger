@@ -10,6 +10,17 @@ class MicroBlogger
 
   def run
     puts "Welcome to the JSL Twitter Client!"
+    command = ""
+    while command != "q"
+      printf "enter command: "
+      input = gets.chomp
+      case command
+        when 'q' then puts "Goodbye!"
+        when 't' then tweet(command)
+        else
+          puts "Sorry, I don't know how to #{command}"
+      end 
+    end
   end
 
   def tweet(message)

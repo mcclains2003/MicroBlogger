@@ -9,11 +9,15 @@ describe MicroBlogger do
   end
 
   it "tweets a message if less than or equal to 140 characters" do
-    @spec.tweet(message) ==
+    @spec.tweet(message).should ==
   end
 
   it "returns message that you are over 140 characters" do
-    @spec.tweet(message_lg) == 
+    @spec.tweet(message_lg).should == 
+  end
+
+  it "allows user input" do 
+    @spec.run.should == 
   end
 
 end
