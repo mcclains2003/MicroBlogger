@@ -20,4 +20,8 @@ describe MicroBlogger do
     @spec.run.should == 
   end
 
+  it "allows you to send a directed message" do 
+    @spec.dm(target, message).should ==
+  end
+
 end
